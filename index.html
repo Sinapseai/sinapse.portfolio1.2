@@ -12,31 +12,52 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000; /* Fundo preto para o corpo */
+            background-color: #000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
-            scroll-behavior: smooth; /* Rolagem suave */
+            scroll-behavior: smooth;
         }
 
         /* Estilo para cada "página" do portfólio */
         .page {
-            width: 21cm; /* Largura de uma folha A4 */
-            min-height: 29.7cm; /* Altura de uma folha A4 */
-            background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%); /* Gradiente para profundidade */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra ajustada, menos intensa */
-            margin: 2.5cm auto; /* Margem superior e inferior para separar as páginas */
-            padding: 3cm; /* Mais padding para mais respiro */
+            width: 100%; /* Mudança: Ocupa a largura disponível */
+            max-width: 21cm; /* Mudança: Trava no tamanho A4 apenas se a tela for grande */
+            min-height: 29.7cm;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            margin: 2.5cm auto;
+            padding: 3cm;
             box-sizing: border-box;
-            color: #e0e0e0; /* Cor do texto claro */
-            border-radius: 1.5rem; /* Cantos mais arredondados */
+            color: #e0e0e0;
+            border-radius: 1.5rem;
             position: relative;
-            overflow: hidden; /* Garante que elementos fora da página não apareçam */
-            opacity: 0; /* Começa invisível para o efeito de fade-in */
-            transform: translateY(30px); /* Começa ligeiramente abaixo para o efeito de slide-up */
-            transition: opacity 1s ease-out, transform 1s ease-out; /* Transição mais suave e longa */
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* AJUSTES PARA CELULAR (Mobile) */
+        @media (max-width: 768px) {
+            .page {
+                width: 95%; /* Ocupa 95% da tela do celular */
+                margin: 1rem auto; /* Margem menor fora */
+                padding: 1.5rem; /* Margem menor dentro (respiro) */
+                min-height: auto; /* Altura flexível */
+            }
+            
+            /* Ajuste de Tamanho das Fontes no Celular */
+            h1 { font-size: 3rem !important; }
+            h2 { font-size: 2rem !important; }
+            h3 { font-size: 1.5rem !important; }
+            
+            /* Ajuste dos elementos de fundo para não atrapalhar no mobile */
+            .page::before, .page::after {
+                opacity: 0.5;
+            }
         }
 
         .page.is-visible {
@@ -44,13 +65,13 @@
             transform: translateY(0);
         }
 
-        /* Elementos de fundo que remetem ao logo da Sinapse Labs */
+        /* Elementos de fundo */
         .page::before, .page::after {
             content: '';
             position: absolute;
-            background-color: rgba(40, 40, 40, 0.2); /* Mais escuro e menos transparente */
+            background-color: rgba(40, 40, 40, 0.2);
             border-radius: 50%;
-            filter: blur(40px); /* Efeito de desfoque ajustado */
+            filter: blur(40px);
             z-index: 0;
         }
 
@@ -70,62 +91,50 @@
 
         .content-wrapper {
             position: relative;
-            z-index: 1; /* Garante que o conteúdo fique acima dos elementos de fundo */
+            z-index: 1;
         }
 
-        /* Estilos para títulos e subtítulos */
+        /* Estilos para títulos */
         h1, h2, h3 {
             color: #ffffff;
-            font-weight: 700; /* Mais negrito */
-            letter-spacing: -0.025em; /* Levemente mais apertado */
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
 
-        h1 { font-size: 5rem; } /* Tamanho maior para o título principal */
-        h2 { font-size: 3.5rem; } /* Tamanho maior para os títulos de seção */
-        h3 { font-size: 2.5rem; } /* Tamanho maior para os subtítulos */
+        h1 { font-size: 5rem; }
+        h2 { font-size: 3.5rem; }
+        h3 { font-size: 2.5rem; }
 
         .client-logo {
-            max-height: 120px; /* Logos maiores */
-            max-width: 250px; /* Logos maiores */
+            max-height: 120px;
+            max-width: 250px;
             object-fit: contain;
-            border-radius: 0.75rem; /* Cantos mais arredondados para logos */
-            transition: transform 0.3s ease-in-out; /* Efeito de transição */
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease-in-out;
         }
         .client-logo:hover {
-            transform: scale(1.05); /* Leve zoom ao passar o mouse */
+            transform: scale(1.05);
         }
 
         .project-image, .project-video {
-            width: 100%; /* Ocupa a largura total do container */
+            width: 100%;
             height: auto;
-            border-radius: 1rem; /* Cantos mais arredondados */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Sombra ajustada, menos difusa */
-            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Efeito de transição */
+            border-radius: 1rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
         }
         .project-image:hover, .project-video:hover {
-            transform: scale(1.02); /* Leve zoom ao passar o mouse */
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8); /* Sombra mais intensa ao passar o mouse */
+            transform: scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
         }
 
-        /* Media queries para responsividade em telas menores */
         @media print {
-            body {
-                background-color: #fff; /* Fundo branco para impressão */
-            }
+            body { background-color: #fff; }
             .page {
-                box-shadow: none; /* Remove sombra na impressão */
-                margin: 0; /* Remove margem na impressão */
-                border-radius: 0; /* Remove cantos arredondados na impressão */
-                background: #fff; /* Fundo branco para impressão */
-                color: #000; /* Texto preto para impressão */
+                box-shadow: none; margin: 0; border-radius: 0;
+                background: #fff; color: #000; width: 100%; max-width: none;
             }
-            .page::before, .page::after {
-                display: none; /* Esconde elementos de fundo na impressão */
-            }
-            .client-logo:hover, .project-image:hover, .project-video:hover {
-                transform: none; /* Remove hover effects for print */
-                box-shadow: none;
-            }
+            .page::before, .page::after { display: none; }
         }
     </style>
 </head>
@@ -138,7 +147,7 @@
             <p class="text-3xl text-gray-300 mb-10 font-semibold">Inovação e Soluções Tecnológicas que Cativam</p>
             <p class="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
                 Na Sinapse Labs, <strong>transformamos visões em realidade digital</strong>. Nosso portfólio não é apenas uma coleção de projetos,
-                mas uma demonstração da nossa <strong>paixão por criar experiências marcantes</strong> e <strong>resultados excepcionais</strong> que impulsionam o sucesso dos nossos clientes.
+                mas uma demonstração da nossa <strong>paixão por criar experiências marcantes</strong> e <strong>resultados excepcionais</strong>.
             </p>
             <div class="mt-8">
                 <button 
@@ -152,20 +161,18 @@
 
     <div class="page flex flex-col justify-center items-center text-center">
         <div class="content-wrapper">
-            <h2 class="text-5xl mb-8 font-bold">Sobre Nós: Onde a Visão se Torna Realidade</h2>
+            <h2 class="text-5xl mb-8 font-bold">Sobre Nós</h2>
             <p class="text-2xl text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto">
                 Somos a Sinapse Labs, um coletivo de <strong>mentes criativas e técnicas</strong> dedicadas a <strong>superar expectativas</strong>.
-                Nossa abordagem combina <strong>design inovador</strong> com <strong>tecnologia de ponta</strong> para entregar soluções que não apenas funcionam,
-                mas <strong>inspiram e conectam</strong> pessoas e marcas de forma significativa.
+                Nossa abordagem combina <strong>design inovador</strong> com <strong>tecnologia de ponta</strong> para entregar soluções que inspiram.
             </p>
             <p class="text-2xl text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto">
-                Cada projeto é uma <strong>jornada colaborativa e imersiva</strong>, focada em entender profundamente
-                as necessidades e desafios de nossos clientes, transformando-os em <strong>soluções digitais eficazes</strong> e <strong>sucesso tangível</strong>.
+                Cada projeto é uma <strong>jornada colaborativa e imersiva</strong>, focada em transformar desafios em <strong>sucesso tangível</strong>.
             </p>
-            <h3 class="text-4xl mb-6 font-bold">Nossa Missão: Impulsionando o Futuro Digital</h3>
+            <h3 class="text-4xl mb-6 font-bold">Nossa Missão</h3>
             <p class="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-                <strong>Conectar pessoas e negócios</strong> através de soluções digitais inteligentes e eficientes,
-                promovendo o <strong>crescimento sustentável</strong>, a <strong>inovação contínua</strong> e um <strong>impacto duradouro</strong> no mercado global.
+                <strong>Conectar pessoas e negócios</strong> através de soluções digitais inteligentes,
+                promovendo o <strong>crescimento sustentável</strong>.
             </p>
         </div>
     </div>
@@ -173,7 +180,6 @@
     <div class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Projetos em Destaque</h2>
-
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
                 <div class="flex flex-col items-center mb-8">
                     <img src="https://i.imgur.com/NHtKTPZ.jpeg" alt="Logo Agro Kohashikawa" class="client-logo mb-4">
@@ -183,15 +189,13 @@
                     </div>
                 </div>
                 <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    Para a Agro Kohashikawa, desenvolvemos uma <strong>identidade visual que reflete a tradição e a qualidade</strong> inquestionável de seus produtos.
-                    Nosso trabalho focou em criar uma <strong>presença de marca forte e memorável</strong>, que ressoa com os valores essenciais da empresa e
-                    se destaca com autoridade no competitivo mercado alimentício, atraindo e fidelizando consumidores.
+                    Desenvolvemos uma <strong>identidade visual que reflete a tradição e a qualidade</strong> inquestionável de seus produtos.
                 </p>
                 <div class="flex justify-center items-center mt-8">
                     <img src="https://i.imgur.com/Gs0jgwr.jpeg" alt="Rótulo de Alho Agro Kohashikawa" class="project-image w-full">
                 </div>
                 <p class="text-base text-gray-500 mt-6 text-center">
-                    <strong>Detalhe do design de rótulo</strong> inovador para produtos Agro Kohashikawa, destacando frescor e autenticidade.
+                    <strong>Detalhe do design de rótulo</strong> inovador para produtos Agro Kohashikawa.
                 </p>
             </div>
         </div>
@@ -200,7 +204,6 @@
     <div class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Parcerias de Sucesso</h2>
-
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
                 <div class="flex flex-col items-center mb-8">
                     <img src="https://i.imgur.com/3eAcvl1.jpeg" alt="Logo Cofesa" class="client-logo mb-4">
@@ -210,15 +213,13 @@
                     </div>
                 </div>
                 <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    No projeto com a Cofesa, nosso objetivo primordial foi criar <strong>embalagens que não apenas informassem, mas também cativassem</strong> e se conectassem com o consumidor.
-                    Desenvolvemos um design que equilibra com maestria a <strong>clareza das informações nutricionais</strong> com um <strong>apelo visual moderno e atraente</strong>,
-                    garantindo que os produtos se <strong>destaquem nas prateleiras</strong>, comuniquem sua qualidade superior e impulsionem a decisão de compra.
+                    Nosso objetivo foi criar <strong>embalagens que não apenas informassem, mas também cativassem</strong>.
                 </p>
                 <div class="flex justify-center items-center mt-8">
                     <img src="https://i.imgur.com/3eAcvl1.jpeg" alt="Exemplo de Embalagem Cofesa" class="project-image w-full">
                 </div>
                 <p class="text-base text-gray-500 mt-6 text-center">
-                    <strong>Design de embalagem</strong> estratégico para produtos Cofesa, otimizando a visibilidade e o impacto no varejo.
+                    <strong>Design de embalagem</strong> estratégico para produtos Cofesa.
                 </p>
             </div>
         </div>
@@ -227,25 +228,22 @@
     <div class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Nossos Clientes</h2>
-
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
                 <div class="flex flex-col items-center mb-8">
                     <img src="https://i.imgur.com/rRT07n8.png" alt="Logo Psicóloga Gabriela Rolim" class="client-logo mb-4">
                     <div>
-                        <h3 class="text-4xl text-white font-bold">Gabriela Rolim dos Santos</h3>
+                        <h3 class="text-4xl text-white font-bold">Gabriela Rolim</h3>
                         <p class="text-xl text-gray-400">Acolhimento e Profissionalismo Digital</p>
                     </div>
                 </div>
                 <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    Criamos um <strong>portfólio digital que reflete a empatia, o profissionalismo e a dedicação</strong> da psicóloga Gabriela Rolim.
-                    O design foi meticulosamente pensado para ser <strong>acolhedor e altamente informativo</strong>, facilitando o acesso às suas qualificações,
-                    experiência e modalidades de atendimento, e estabelecendo uma <strong>conexão imediata e de confiança</strong> com seus pacientes desde o primeiro contato online.
+                    Criamos um <strong>portfólio digital que reflete a empatia e o profissionalismo</strong>.
                 </p>
                 <div class="flex justify-center items-center mt-8">
                     <img src="https://i.imgur.com/aXJ806H.png" alt="Exemplo de Portfólio Gabriela Rolim" class="project-image w-full">
                 </div>
                 <p class="text-base text-gray-500 mt-6 text-center">
-                    <strong>Portfólio digital profissional</strong> para Gabriela Rolim dos Santos, otimizado para engajamento e clareza.
+                    <strong>Portfólio digital profissional</strong> para Gabriela Rolim dos Santos.
                 </p>
             </div>
         </div>
@@ -254,7 +252,6 @@
     <div class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Inovação em Movimento</h2>
-
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
                 <div class="flex flex-col items-center mb-8">
                     <img src="https://i.imgur.com/MQMpYuv.png" alt="Logo Let's On" class="client-logo mb-4">
@@ -264,9 +261,7 @@
                     </div>
                 </div>
                 <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    Para a Let's On, desenvolvemos uma <strong>identidade visual dinâmica e vibrante</strong> que traduz com perfeição a energia e a inovação disruptiva da startup.
-                    Através de <strong>elementos gráficos modernos e animações fluidas</strong>, criamos uma marca que não apenas comunica
-                    tecnologia de ponta, mas também <strong>inspira ação, impulsiona o progresso</strong> e se destaca como líder em seu segmento.
+                    Desenvolvemos uma <strong>identidade visual dinâmica</strong> que traduz a inovação da startup.
                 </p>
                 <div class="flex justify-center items-center mt-8">
                     <video class="project-video w-full" autoplay loop muted playsinline>
@@ -275,7 +270,7 @@
                     </video>
                 </div>
                 <p class="text-base text-gray-500 mt-6 text-center">
-                    <strong>Identidade visual animada</strong> para Let's On, demonstrando dinamismo e inovação.
+                    <strong>Identidade visual animada</strong> para Let's On.
                 </p>
             </div>
         </div>
@@ -285,14 +280,12 @@
         <div class="content-wrapper">
             <h2 class="text-5xl mb-8 font-bold">Conecte-se Conosco</h2>
             <p class="text-2xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto">
-                Pronto para <strong>transformar sua ideia em um projeto de sucesso</strong> e ver sua visão ganhar vida digital?
-                Entre em contato com a Sinapse Labs e vamos <strong>construir o futuro digital juntos</strong>, com soluções personalizadas e resultados impactantes.
+                Pronto para <strong>transformar sua ideia em um projeto de sucesso</strong>?
+                Entre em contato com a Sinapse Labs.
             </p>
             <div class="text-center text-xl text-gray-400 space-y-6">
                 <p><strong>E-mail:</strong> <a href="mailto:Sinapse.ai.co@gmail.com" class="text-blue-400 hover:text-blue-300 transition duration-300">Sinapse.ai.co@gmail.com</a></p>
-                
                 <p><strong>WhatsApp:</strong> <a href="https://wa.me/5548988699600" class="text-blue-400 hover:text-blue-300 transition duration-300">(48) 98869-9600</a></p>
-                
                 <p><strong>Localização:</strong> Florianópolis - Santa Catarina</p>
             </div>
             <p class="mt-16 text-gray-500 text-base">
@@ -302,29 +295,18 @@
     </div>
 
     <script>
-        // Intersection Observer para fade-in ao rolar
         document.addEventListener('DOMContentLoaded', () => {
             const pages = document.querySelectorAll('.page');
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                    } else {
-                        // Opcional: remover a classe para reanimar ao rolar para cima
-                        // entry.target.classList.remove('is-visible');
                     }
                 });
-            }, {
-                threshold: 0.1 // A página se torna visível quando 10% dela está no viewport
-            });
-
-            pages.forEach(page => {
-                observer.observe(page);
-            });
+            }, { threshold: 0.1 });
+            pages.forEach(page => observer.observe(page));
         });
     </script>
-    
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </body>
 </html>

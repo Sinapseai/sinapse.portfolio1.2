@@ -128,7 +128,7 @@
             }
         }
     </style>
-</head>
+</head><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <body>
 
     <!-- Página de Capa -->
@@ -141,7 +141,13 @@
             <p class="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
                 Na Sinapse Labs, <strong>transformamos visões em realidade digital</strong>. Nosso portfólio não é apenas uma coleção de projetos,
                 mas uma demonstração da nossa <strong>paixão por criar experiências marcantes</strong> e <strong>resultados excepcionais</strong> que impulsionam o sucesso dos nossos clientes.
-            </p>
+            </p><div class="mt-8">
+    <button 
+        onclick="Calendly.initPopupWidget({ url: https://calendly.com/felipejoaoalmeida26/sessao-de-diagnostico-digital, text: 'Agendar Horário', color: '#0069ff', textColor: '#ffffff', branding: true }); return false;"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 cursor-pointer">
+        Agendar Sessão Agora
+    </button>
+</div>
         </div>
     </div>
 
@@ -332,5 +338,6 @@
             });
         });
     </script>
-</body>
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script></body>
 </html>
+

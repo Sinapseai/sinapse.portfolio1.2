@@ -23,8 +23,8 @@
 
         /* Estilo para cada "página" do portfólio */
         .page {
-            width: 100%; /* Largura flexível */
-            max-width: 21cm; /* Trava no tamanho A4 em telas grandes */
+            width: 100%;
+            max-width: 21cm;
             min-height: 29.7cm;
             background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
@@ -40,13 +40,13 @@
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        /* AJUSTES PARA CELULAR (Mobile Friendly) */
+        /* AJUSTES PARA CELULAR */
         @media (max-width: 768px) {
             .page {
-                width: 95%; /* Ocupa 95% da tela */
-                margin: 1rem auto; 
-                padding: 1.5rem; 
-                min-height: auto; 
+                width: 95%;
+                margin: 1rem auto;
+                padding: 1.5rem;
+                min-height: auto;
             }
             h1 { font-size: 3rem !important; }
             h2 { font-size: 2rem !important; }
@@ -92,6 +92,14 @@
             transform: scale(1.02); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
         }
 
+        /* Ajuste do Widget de Tradução para não tapar o WhatsApp */
+        .gtranslate_wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* Joguei pra esquerda para não brigar com o WhatsApp na direita */
+            z-index: 999;
+        }
+
         @media print {
             body { background-color: #fff; }
             .page {
@@ -104,6 +112,37 @@
 </head>
 <body>
 
+    <button onclick="toggleMenu()" class="fixed top-6 left-6 z-50 p-2 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+    </button>
+
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-[#0a0a0a] z-[60] transform -translate-x-full transition-transform duration-500 ease-in-out shadow-2xl border-r border-gray-800">
+        <div class="p-8 flex flex-col h-full">
+            <div class="flex justify-between items-center mb-12">
+                <span class="text-2xl font-bold text-white tracking-tighter">SINAPSE<span class="text-blue-500">.</span></span>
+                <button onclick="toggleMenu()" class="text-gray-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6 text-xl">
+                <a href="#" onclick="toggleMenu(); window.scrollTo(0,0);" class="text-gray-300 hover:text-white border-l-2 border-transparent hover:border-blue-500 pl-0 hover:pl-2 transition-all">Início</a>
+                <a href="#sobre" onclick="toggleMenu()" class="text-gray-300 hover:text-white border-l-2 border-transparent hover:border-blue-500 pl-0 hover:pl-2 transition-all">Sobre Nós</a>
+                <a href="#projetos" onclick="toggleMenu()" class="text-gray-300 hover:text-white border-l-2 border-transparent hover:border-blue-500 pl-0 hover:pl-2 transition-all">Projetos</a>
+                <a href="#clientes" onclick="toggleMenu()" class="text-gray-300 hover:text-white border-l-2 border-transparent hover:border-blue-500 pl-0 hover:pl-2 transition-all">Clientes</a>
+                <a href="#contato" onclick="toggleMenu()" class="text-gray-300 hover:text-white border-l-2 border-transparent hover:border-blue-500 pl-0 hover:pl-2 transition-all">Contato</a>
+            </nav>
+            <div class="mt-auto pt-8 border-t border-gray-800">
+                <p class="text-gray-500 text-sm">Florianópolis, SC</p>
+                <p class="text-gray-600 text-xs mt-2">© 2025 Sinapse Labs</p>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/80 z-[55] hidden opacity-0 transition-opacity duration-500"></div>
+
     <div class="page flex flex-col justify-center items-center text-center">
         <div class="content-wrapper">
             <img src="https://i.imgur.com/a7LWkCc.png" alt="Embalagem COFESA" class="mx-auto mb-10 w-full h-auto rounded-lg shadow-lg">
@@ -113,16 +152,15 @@
                 Na Sinapse Labs, <strong>transformamos visões em realidade digital</strong>.
             </p>
             <div class="mt-8">
-                <button 
-                    onclick="Calendly.initPopupWidget({ url: 'https://calendly.com/sinapse-ai-co/30min', text: 'Agendar Horário', color: '#0069ff', textColor: '#ffffff', branding: true }); return false;"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 cursor-pointer">
+                <button onclick="Calendly.initPopupWidget({ url: 'https://calendly.com/sinapse-ai-co/30min', text: 'Agendar Horário', color: '#0069ff', textColor: '#ffffff', branding: true }); return false;"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 cursor-pointer">
                     Agendar Sessão Agora
                 </button>
             </div>
         </div>
     </div>
 
-    <div class="page flex flex-col justify-center items-center text-center">
+    <div id="sobre" class="page flex flex-col justify-center items-center text-center">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-8 font-bold">Sobre Nós</h2>
             <p class="text-2xl text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto">
@@ -135,7 +173,7 @@
         </div>
     </div>
 
-    <div class="page">
+    <div id="projetos" class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Projetos em Destaque</h2>
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
@@ -171,7 +209,7 @@
         </div>
     </div>
 
-    <div class="page">
+    <div id="clientes" class="page">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-10 text-center font-bold">Nossos Clientes</h2>
             <div class="mb-16 p-8 bg-[#2a2a2a] rounded-2xl shadow-xl text-center">
@@ -209,7 +247,7 @@
         </div>
     </div>
 
-    <div class="page flex flex-col justify-center items-center text-center">
+    <div id="contato" class="page flex flex-col justify-center items-center text-center">
         <div class="content-wrapper">
             <h2 class="text-5xl mb-8 font-bold">Conecte-se Conosco</h2>
             <p class="text-2xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto">
@@ -234,7 +272,36 @@
         </svg>
     </a>
 
+    <div class="gtranslate_wrapper"></div>
     <script>
+        window.gtranslateSettings = {
+            "default_language":"pt",
+            "native_language_names":true,
+            "detect_browser_language":true,
+            "languages":["pt","es","en"],
+            "wrapper_selector":".gtranslate_wrapper",
+            "flag_style":"3d",
+            "alt_flags":{"en":"usa","pt":"brazil","es":"argentina"} 
+        };
+    </script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 500);
+            }
+        }
+
+        // Animação de entrada dos elementos
         document.addEventListener('DOMContentLoaded', () => {
             const pages = document.querySelectorAll('.page');
             const observer = new IntersectionObserver((entries) => {
@@ -248,19 +315,5 @@
         });
     </script>
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    <div class="gtranslate_wrapper"></div>
-<script>
-    window.gtranslateSettings = {
-        "default_language":"pt",
-        "native_language_names":true,
-        "detect_browser_language":true,
-        "languages":["pt","es","en"],
-        "wrapper_selector":".gtranslate_wrapper",
-        "flag_style":"3d",
-        "alt_flags":{"en":"usa","pt":"brazil","es":"argentina"} 
-    };
-</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 </body>
 </html>
-

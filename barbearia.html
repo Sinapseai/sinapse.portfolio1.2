@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Black Gold | Sinapse Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white flex flex-col min-h-screen">
+
+    <nav class="p-6 flex justify-between items-center border-b border-zinc-800">
+        <div class="text-xl font-bold tracking-tighter">BARBEARIA<span class="text-amber-500">.</span></div>
+        <div class="text-sm text-zinc-400">Florianópolis, SC</div>
+    </nav>
+
+    <main class="flex-grow flex flex-col justify-center items-center text-center p-6 relative overflow-hidden">
+        <div class="bg-amber-500/10 border border-amber-500/50 text-amber-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 animate-pulse">
+            ⚡ Evite filas: Pague antecipado e ganhe 10% OFF
+        </div>
+
+        <h1 class="text-5xl font-black mb-4 leading-tight">
+            O SEU ESTILO <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">MERECE RESPEITO.</span>
+        </h1>
+        
+        <p class="text-zinc-400 text-lg mb-8 max-w-md">
+            Agende seu horário em 10 segundos. Sem ligar, sem esperar resposta no WhatsApp.
+        </p>
+
+        <button onclick="Calendly.initPopupWidget({ url: 'https://calendly.com/sinapse-ai-co/30min' }); return false;" 
+                class="gold-gradient text-black font-bold text-lg py-4 px-10 rounded-xl shadow-lg shadow-amber-500/20 transform hover:scale-105 transition-all duration-300 w-full max-w-xs flex items-center justify-center gap-2">
+            <i data-lucide="calendar-check"></i>
+            AGENDAR AGORA
+        </button>
+
+        <p class="text-xs text-zinc-600 mt-4">
+            *Pagamento via Pix ou Cartão disponível no agendamento.
+        </p>
+    </main>
+
+    <section class="bg-zinc-900/50 p-8 border-t border-zinc-800">
+        <h3 class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-6 text-center">Nossos Serviços</h3>
+        
+        <div class="space-y-4 max-w-md mx-auto">
+            <div class="flex justify-between items-center p-4 bg-zinc-900 rounded-lg border border-zinc-800">
+                <div class="flex items-center gap-3">
+                    <div class="bg-zinc-800 p-2 rounded-full text-amber-500"><i data-lucide="scissors"></i></div>
+                    <div>
+                        <div class="font-bold">Corte Premium</div>
+                        <div class="text-xs text-zinc-500">45 minutos</div>
+                    </div>
+                </div>
+                <div class="font-bold text-amber-500">R$ 60</div>
+            </div>
+
+            <div class="flex justify-between items-center p-4 bg-zinc-900 rounded-lg border border-zinc-800">
+                <div class="flex items-center gap-3">
+                    <div class="bg-zinc-800 p-2 rounded-full text-amber-500"><i data-lucide="user"></i></div>
+                    <div>
+                        <div class="font-bold">Barba Terapia</div>
+                        <div class="text-xs text-zinc-500">30 minutos</div>
+                    </div>
+                </div>
+                <div class="font-bold text-amber-500">R$ 45</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-8 text-center">
+        <div class="flex justify-center gap-1 text-amber-500 mb-2">
+            <i data-lucide="star" fill="currentColor"></i>
+            <i data-lucide="star" fill="currentColor"></i>
+            <i data-lucide="star" fill="currentColor"></i>
+            <i data-lucide="star" fill="currentColor"></i>
+            <i data-lucide="star" fill="currentColor"></i>
+        </div>
+        <p class="text-zinc-300 font-medium">"Melhor atendimento da Trindade. O agendamento online salvou minha vida."</p>
+        <p class="text-zinc-600 text-sm mt-2">- Cliente Google, há 2 dias</p>
+    </section>
+
+    <footer class="p-6 text-center border-t border-zinc-900 bg-zinc-950">
+        <p class="text-zinc-700 text-xs">Desenvolvido por <span class="text-zinc-500 font-bold">Sinapse Labs</span></p>
+        <p class="text-zinc-800 text-[10px] mt-1">Tecnologia de Agendamento Inteligente</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
